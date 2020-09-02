@@ -7,9 +7,13 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'vs2017-win2016'
 
 steps:
+- script: |
+    echo Trying
+    mvn package
+  displayName: 'Build with Maven'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -21,4 +25,3 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-displayName: 'Build with Maven'
